@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'user adds characters to a show', %Q {
+feature 'user adds characters to a show', %Q{
   As a site visitor
-I want to add my favorite TV show characters
-So that other people can enjoy their crazy antics
+  I want to add my favorite TV show characters
+  So that other people can enjoy their crazy antics
 } do
 
 # Acceptance Criteria:
