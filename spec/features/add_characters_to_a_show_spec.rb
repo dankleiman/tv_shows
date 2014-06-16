@@ -29,8 +29,8 @@ feature 'user adds characters to a show', %Q{
     character = Character.new(character_attrs)
 
     visit "televsision_shows/#{show.id}"
-    fill_in 'role', with character.role
-    fill_in 'actor', with character.actor
+    fill_in 'role', with: character.role
+    fill_in 'actor', with: character.actor
     click_on 'Submit'
 
     expect(page).to have_content 'Success'
