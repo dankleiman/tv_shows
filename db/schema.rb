@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617145950) do
+ActiveRecord::Schema.define(version: 20140617173109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "actors", force: true do |t|
+    t.string "name", null: false
+  end
+
   create_table "characters", force: true do |t|
     t.string  "role",               null: false
-    t.string  "actor"
     t.integer "television_show_id"
     t.text    "description"
+    t.integer "actor_id"
   end
 
   create_table "television_shows", force: true do |t|

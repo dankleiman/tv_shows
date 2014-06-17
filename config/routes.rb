@@ -4,4 +4,6 @@ TvShows::Application.routes.draw do
   end
 
   resources :characters, only: [:index, :destroy]
+
+  resources :actors, only: [:index, :create]
 end

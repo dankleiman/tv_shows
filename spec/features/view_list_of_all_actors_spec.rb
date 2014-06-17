@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-feature 'user views a list of all characters', %Q{
+feature 'user views a list of all actors', %Q{
     As a site visitor
-    I want to view a list of people's favorite TV characters
-    So I can find wonky characters to watch
+    I want to view a list of all TV actors
   } do
 
 # Acceptance Criteria:
-# * I can see a list of all the characters
-# * The character's name and the TV show it is associated with are listed
-  it 'shows all characters' do
+# * I can see a list of all the actors
+# * The actors' roles and the TV shows they are associated with are listed
+
+  it 'shows all actors' do
 
      attrs = {
           title: 'Game of Thrones',
@@ -17,6 +17,7 @@ feature 'user views a list of all characters', %Q{
           years: '2011-',
           synopsis: 'Seven noble families fight for control of the mythical land of Westeros.'
         }
+
       show = TelevisionShow.create(attrs)
 
       actor = Actor.create(name: 'Peter Dinklage')
@@ -26,11 +27,10 @@ feature 'user views a list of all characters', %Q{
         actor: actor,
         television_show: show)
 
-      visit characters_path
+      visit actors_path
 
-      expect(page).to have_content 'TV Characters'
-      expect(page).to have_content character.role
-      expect(page).to have_content show.title
+      expect(page).to have_content 'Actors'
+      expect(page).to have_content actor.name
   end
 
 

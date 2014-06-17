@@ -7,7 +7,6 @@ class CharactersController < ApplicationController
   def destroy
     character = Character.find(params[:id])
     show = character.television_show_id
-    binding.pry
     if character.destroy
       flash[:notice] = "Successfully deleted."
     else
@@ -19,20 +18,22 @@ class CharactersController < ApplicationController
   def create
     @television_show = TelevisionShow.find(params[:television_show_id])
     @character = Character.new(character_params)
+    @actor = Actor.find_or_create_by(name: params[:character][:actor])
+    @character.actor = @actor
     @character.television_show = @television_show
+
     if @character.save
       flash[:notice] = "Success!"
-      redirect_to "/television_shows/#{@television_show.id}"
     else
       flash[:notice] = "Could not save this character."
-      redirect_to "/television_shows/#{@television_show.id}"
     end
+    redirect_to "/television_shows/#{@television_show.id}"
   end
 
   private
 
   def character_params
-    params.require(:character).permit(:role, :actor, :show)
+    params.require(:character).permit(:role, :show)
   end
 
 end
