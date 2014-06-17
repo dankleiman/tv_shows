@@ -1,5 +1,9 @@
 class CharactersController < ApplicationController
 
+  def index
+    @characters = Character.all
+  end
+
   def create
     @television_show = TelevisionShow.find(params[:television_show_id])
     @character = Character.new(character_params)
