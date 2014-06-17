@@ -5,5 +5,5 @@ TvShows::Application.routes.draw do
 
   resources :characters, only: [:index, :destroy]
 
-  resources :actors, only: [:index, :create]
+  resources :actors, only: [:index, :create, :show]
 end

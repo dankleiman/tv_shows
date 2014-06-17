@@ -14,6 +14,10 @@ class ActorsController < ApplicationController
     redirect_to actor_path(@actor.id)
   end
 
+  def show
+    @actor = Actor.find(params[:id])
+  end
+
   private
 
   def actor_params
