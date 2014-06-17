@@ -13,24 +13,23 @@ feature 'user adds characters to a show', %Q{
 # * If I do not provide the required information, I receive an error message
 # * If the character already exists in the database, I receive an error message
 
-  scenario 'user adds a character' do
+  it 'adds a character' do
     attrs = {
         title: 'Game of Thrones',
         network: 'HBO',
         years: '2011-',
         synopsis: 'Seven noble families fight for control of the mythical land of Westeros.'
       }
-    show = TelevisionShow.new(attrs)
+    show = TelevisionShow.create(attrs)
 
-    character_attrs = {
+    character = Character.new(
       role: 'Tyrion Lannister',
-      actor: 'Peter Dinklage'
-    }
-    character = Character.new(character_attrs)
+      actor: 'Peter Dinklage',
+      television_show: show)
 
-    visit "television_shows/#{show.id}"
-    fill_in 'role', with: character.role
-    fill_in 'actor', with: character.actor
+    visit television_show_path(show.id)
+    fill_in 'Role', with: character.role
+    fill_in 'Actor', with: character.actor
     click_on 'Submit'
 
     expect(page).to have_content 'Success'
