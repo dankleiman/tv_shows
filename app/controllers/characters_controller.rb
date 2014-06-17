@@ -4,6 +4,18 @@ class CharactersController < ApplicationController
     @characters = Character.all
   end
 
+  def destroy
+    character = Character.find(params[:id])
+    show = character.television_show_id
+    binding.pry
+    if character.destroy
+      flash[:notice] = "Successfully deleted."
+    else
+      flash[:notice] = "Unable to delete."
+    end
+    redirect_to television_show_path(show)
+  end
+
   def create
     @television_show = TelevisionShow.find(params[:television_show_id])
     @character = Character.new(character_params)
