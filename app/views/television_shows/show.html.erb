@@ -11,8 +11,11 @@
 
 <h3>Characters</h3>
 <ul>
-<%= @television_show.characters.each do |character| %>
-<li><%=character.actor%> as <%=character.role%></li>
+<% @television_show.characters.each do |character| %>
+<li>
+  <strong><%=character.role%></strong>, played by <%=character.actor%>
+  <p><%=character.description%></p>
+</li>
 <% end %>
 </ul>
 
